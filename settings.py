@@ -14,4 +14,5 @@ revenue_per_minute = (cost_of_one_ice_cream * people_per_restaurant_per_minute) 
 # (column tz database name)
 timezone:str = 'America/New_York'
 
-csv_path:str = 'data.csv'
+# directory where data will be stored
+data_dir_suffix = 'data'

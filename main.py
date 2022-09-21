@@ -1,9 +1,7 @@
 from time import sleep
 import pytz
 from datetime import datetime
-import csv
-from typing import List
-from src import scraper, converters, calculations
+from src import scraper, converters, calculations, json_handling, dir_handling
 import settings
 
 tz = pytz.timezone(settings.timezone)
@@ -11,11 +9,8 @@ tz = pytz.timezone(settings.timezone)
 URL:str = settings.mcbroken_url
 REVENUE_PER_MINUTE:str = settings.revenue_per_minute
 
+
 def main():
-    output=open(settings.csv_path ,'w')
-    header:List[str] = ['date_and_time', 'lost_revenue']
-    mywriter=csv.writer(output)
-    mywriter.writerow(header)
     while True:
         percentage_from_site:str = scraper.get_percentage_of_currently_broken_machines(URL)
         percentage_of_broken_machines:float = converters.convert_percentage_as_string_to_float(
@@ -26,7 +21,15 @@ def main():
             percentage_of_broken_machines=percentage_of_broken_machines
         )
         current_time:datetime = datetime.now(tz=tz)
-        mywriter.writerow([current_time, lost_revenue])
+        data_dir:str = f'{settings.data_dir_suffix}/year={current_time.year}/month={current_time.month}/day={current_time.day}'
+        dir_handling.create_data_dir_if_not_exists(data_dir)
+        result_as_dict:dict = json_handling.write_lost_revenue_to_dict(lost_revenue)
+        json_object:str = json_handling.write_dict_to_json_object(result_as_dict)
+        path_to_current_file = f'{data_dir}/output={current_time}.json'
+        json_handling.write_json_object_to_path(
+            json_object=json_object,
+            path=path_to_current_file
+        )
         sleep(60)
 
 
