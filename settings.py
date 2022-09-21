@@ -1,0 +1,1 @@
+mcbroken_url:str = 'https://mcbroken.com/'
