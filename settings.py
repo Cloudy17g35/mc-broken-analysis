@@ -1,3 +1,5 @@
+from datetime import datetime
+
 mcbroken_url:str = 'https://mcbroken.com/'
 
 # i assumed revenue from selling ice creames in all McDonalds in US is equal 53348
@@ -16,3 +18,6 @@ timezone:str = 'America/New_York'
 
 # directory where data will be stored
 data_dir_suffix = 'data'
+
+# range of dates dates used in app.py
+min_date, max_date = datetime(2022,9,21), datetime(2022,9,23)
