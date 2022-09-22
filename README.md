@@ -117,7 +117,7 @@ There are **two python scripts:**
   
 Python version: **3.9.12**
 
-**extract.py** is using [selenium](https://www.selenium.dev/documentation/), which needs [gekodriver](https://github.com/mozilla/geckodriver) , on **MacOS** it can be easily installed using **brew**:
+**extract.py** is using [selenium](https://www.selenium.dev/documentation/), which needs [geckodriver](https://github.com/mozilla/geckodriver) , on **MacOS** it can be easily installed using **brew**:
 
     brew install geckodriver
 
