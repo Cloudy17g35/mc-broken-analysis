@@ -2,7 +2,7 @@ from datetime import datetime
 
 mcbroken_url:str = 'https://mcbroken.com/'
 
-# assumed values - look problem_overview.ipynb
+# assumed values - look README
 cost_of_one_ice_cream:int = 1
 number_of_restaurants:int = 13337
 # assumed amount of people per minute which want to buy ice cream in one restaurant
