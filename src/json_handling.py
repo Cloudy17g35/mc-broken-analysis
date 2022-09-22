@@ -27,3 +27,11 @@ def write_json_object_to_path(
         f.write(
             json_object
             )
+
+
+def read_json_to_dict(
+    path:str
+    ) -> dict:
+    with open(path, 'r') as openfile:
+        json_object = json.load(openfile)
+    return json_object
