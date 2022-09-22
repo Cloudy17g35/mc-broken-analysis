@@ -3,16 +3,23 @@ import pytz
 from datetime import datetime
 from src import scraper, converters, calculations, json_handling, dir_handling
 import settings
+from logger import Logger
 
 tz = pytz.timezone(settings.timezone)
 
 URL:str = settings.mcbroken_url
 REVENUE_PER_MINUTE:str = settings.revenue_per_minute
+logs:Logger = Logger('scraper.log')
 
 
 def main():
+    logs.info('Scraping data started')
     while True:
-        percentage_from_site:str = scraper.get_percentage_of_currently_broken_machines(URL)
+        try:
+            percentage_from_site:str = scraper.get_percentage_of_currently_broken_machines(URL)
+        except Exception as e:
+            logs.error(f'Error occured while scraping data: {e}')
+            return
         percentage_of_broken_machines:float = converters.convert_percentage_as_string_to_float(
             percentage_from_site
         )
@@ -30,6 +37,7 @@ def main():
             json_object=json_object,
             path=path_to_current_file
         )
+        logs.info(f'saving file: {path_to_current_file}')
         sleep(60)
 
 
