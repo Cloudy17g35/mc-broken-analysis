@@ -1,17 +1,16 @@
 import json
+from typing import Dict
 
 
-def write_lost_revenue_to_dict(
-    lost_revenue:float
-    ) -> dict:
+def write_lost_revenue_to_dict(lost_revenue:float) -> Dict[str, float]:
+    
     return {
         'lost_revenue': lost_revenue
     }
 
 
-def write_dict_to_json_object(
-    d:dict) -> str:
-    json_object = json.dumps(
+def write_dict_to_json_object(d:dict) -> str:
+    json_object:str = json.dumps(
         d,
         indent=4,
         sort_keys=True,
@@ -35,3 +34,4 @@ def read_json_to_dict(
     with open(path, 'r') as openfile:
         json_object = json.load(openfile)
     return json_object
+
