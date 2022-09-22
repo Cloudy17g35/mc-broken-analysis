@@ -80,7 +80,7 @@ With all assumptions and data listed in problem overview we can solve this probl
 
   
 
-(cost of one ice cream * amount of people buying it) * number of restaurants in us
+`(cost of one ice cream * amount of people buying it) * number of restaurants in us`
 
   
 
@@ -88,7 +88,7 @@ Thats potential revenue, but we know that some percentage of all machines are br
 
   
 
-(potential revenue * percentage of not working machines) / 100
+`(potential revenue * percentage of not working machines) / 100`
 
   
 
